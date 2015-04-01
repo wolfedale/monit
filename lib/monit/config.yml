@@ -1,0 +1,4 @@
+---
+hosts: ["wp.pl", "onet.pl", "interia.pl"]
+log: "/home/i/monit/logs.txt"
+status: "/home/i/monit/status.yml"

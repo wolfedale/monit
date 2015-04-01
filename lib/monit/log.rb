@@ -1,8 +1,8 @@
-# logs.txt => Monit::Conf
 module Monit
   class Log
     def initialize
-      @logfile = File.open("logs.txt", "a")
+      @logconf = ::Monit::Config.new.logconf
+      @logfile = File.open(@logconf, "a")
     end
 
     @@instance = Log.new
