@@ -1,7 +1,7 @@
 module Monit
   class Log
     def initialize
-      @logconf = ::Monit::Config.new.logconf
+      @logconf = ::Monit::Config.logconf
       @logfile = File.open(@logconf, "a")
     end
 

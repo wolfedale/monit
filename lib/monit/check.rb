@@ -5,10 +5,9 @@ module Monit
       p1.ping?
     end
     
-    def self.host(host, log=false)
+    def self.host(host)
      result = ping(host) ? "OK" : "CRITICAL"
-     Log.instance.host(Time.now, host, result) if log == true
-     return result
+     History.save(host, result)
     end
   end
 end

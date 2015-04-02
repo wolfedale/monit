@@ -1,27 +1,32 @@
 module Monit
   class Config
-    def initialize
-      @hash = Hash.new
-      @config = YAML.load(File.open("/home/i/git/monit/lib/monit/config.yml"))
+
+    def self.conf
+      @config = YAML.load_file("/home/i/git/monit/lib/monit/config.yml")
     end
 
-    def conf
-      @config.each do |key, val|
-        @hash[key] = val
-      end
+    def self.logconf
+      @log = conf["log"]
     end
 
-    def logconf
-      return @log = conf["log"]
-    end
-
-    def hosts
+    def self.hosts
       @hosts = conf["hosts"]
-      @hosts.each do |host|
-        host
-      end
-      return @hosts
     end
-            
+
+    def self.recipient
+      @recipient = conf["email_recipient"]
+    end
+
+    def self.subject
+      @subject = conf["email_subject"]
+    end
+
+    def self.body
+      @body = conf["email_body"]
+    end            
+ 
+    def self.db_file
+      @db_file = conf["db_file"]
+    end
   end
 end

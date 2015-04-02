@@ -15,8 +15,8 @@ require 'rubygems'
 require 'optparse'
 require 'pp'
 
-#Monit::Check.host("wp.pl", log=true)
-#Monit::Check.host(::Monit::Config.new.hosts, log=true)
-Monit::Config.new.hosts.each do |check|
-  Monit::Check.host(check, log=true)
+Monit::Config.hosts.each do |check|
+  Monit::Check.host(check)
 end
+
+Monit::Check.host("google.com")

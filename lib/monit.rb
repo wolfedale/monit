@@ -8,12 +8,7 @@ module Monit
   require 'net/ping'
   require 'monit/check'
   require 'monit/log'
-  
-  def self.hi
-    puts "Hello world!"
-  end
-
-  def self.check(host)
-    puts host
-  end
+  require 'tempfile'
+  require 'monit/history'
+  require 'sqlite3'
 end
