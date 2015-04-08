@@ -11,4 +11,5 @@ module Monit
   require 'tempfile'
   require 'monit/history'
   require 'sqlite3'
+  require 'monit/timer'
 end

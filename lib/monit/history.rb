@@ -22,25 +22,18 @@ module Monit
       return db
     end
 
-    def self.show
-      db.execute 'SELECT * FROM hosts' do |row|
-        p row
-      end
+    def self.status(host)
+      histfile
+      db.execute "SELECT status FROM hosts where hostname='#{host}'"
     end
 
     def self.save(host, status)
       histfile
-      if select(host).empty?
+      if status(host).empty?
         db.execute "INSERT INTO hosts(datetime, hostname, status) VALUES ('#{Time.now.to_s}', '#{host}', '#{status}')"
       else
         db.execute "UPDATE hosts set datetime='#{Time.now.to_s}', hostname='#{host}', status='#{status}' where hostname='#{host}'" 
       end
-    end
-
-    def self.select(host)
-      histfile
-       result = db.execute "SELECT * from hosts where hostname='#{host}'";
-       return result
     end
 
   end

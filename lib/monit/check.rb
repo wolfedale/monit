@@ -7,6 +7,7 @@ module Monit
     
     def self.host(host)
      result = ping(host) ? "OK" : "CRITICAL"
+     puts "#{host} - now: #{result} | from_db: #{History.status(host)}"
      History.save(host, result)
     end
   end
