@@ -1,0 +1,7 @@
+---
+hosts: ["wp.pl", "onet.pl", "interia.pl", "testing.co.uk.de"]
+log: "/home/i/monit/logs.txt"
+email_recipient: "pawel.grzesik@gmail.com"
+email_subject: "PROBLEM Service Alert: %s - %s"
+email_body: 'BODY will be here.'
+db_file: "/home/i/monit/history.db"
