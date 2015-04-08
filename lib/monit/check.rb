@@ -7,8 +7,19 @@ module Monit
     
     def self.host(host)
      result = ping(host) ? "OK" : "CRITICAL"
-     puts "#{host} - now: #{result} | from_db: #{History.status(host)}"
+
+     if result == "OK" and History.status(host) == [["OK"]]
+       Timer.is_ok(host)
+     elsif result == "OK" and History.status(host) == [["CRITICAL"]]
+       Timer.is_ok_was_critical(host)
+     elsif result == "CRITICAL" and History.status(host) == [["OK"]]
+       Timer.is_critical_was_ok(host)
+     elsif result == "CRITICAL" and History.status(host) == [["CRITICAL"]]
+       Timer.is_critical_was_critical(host)
+     end
+
      History.save(host, result)
+
     end
   end
 end
