@@ -2,7 +2,7 @@ module Monit
   class Config
 
     def self.conf
-      @config = YAML.load_file("/home/i/git/monit/lib/monit/config.yml")
+      @config = YAML.load_file("/etc/monit/config.yml")
     end
 
     def self.logconf

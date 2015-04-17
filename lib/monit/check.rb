@@ -6,20 +6,23 @@ module Monit
     end
     
     def self.host(host)
-     result = ping(host) ? "OK" : "CRITICAL"
+      # Checking if there is a lock.
+      Monit::Locker.checkit
 
-     if result == "OK" and History.status(host) == [["OK"]]
-       Timer.is_ok(host)
-     elsif result == "OK" and History.status(host) == [["CRITICAL"]]
-       Timer.is_ok_was_critical(host)
-     elsif result == "CRITICAL" and History.status(host) == [["OK"]]
-       Timer.is_critical_was_ok(host)
-     elsif result == "CRITICAL" and History.status(host) == [["CRITICAL"]]
-       Timer.is_critical_was_critical(host)
-     end
+      # Checking the current status of host
+      result = ping(host) ? "OK" : "CRITICAL"
+  
+      # Save the current status to the database
+      History.save(host, result) if History.hostexist?(host) == false
 
-     History.save(host, result)
+      # Execute methods according to the statuses.
+      Timer.is_critical_was_critical(host, result) if result == "CRITICAL" and History.status(host) == "CRITICAL"
+      Timer.is_ok_was_ok(host, result) if result == "OK" and History.status(host) == "OK"
+      Timer.is_ok_was_critical(host, result) if result == "OK" and History.status(host) == "CRITICAL"
+      Timer.is_critical_was_ok(host, result) if result == "CRITICAL" and History.status(host) == "OK"
 
+      # Delete lock
+      Monit::Locker.deletef
     end
   end
 end

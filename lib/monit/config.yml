@@ -1,8 +1,7 @@
 ---
-hosts: ["wp.pl", "onet.pl", "interia.pl", "brainsotmrs.co.uk"]
-log: "/home/i/monit/logs.txt"
+hosts: ["wp.pl", "onet.pl", "interia.pl", "brainsotmrs.co.uk", "8.8.8.8"]
+log: "/etc/monit/logs.txt"
+config: "/etc/monit/config.yml"
 email_recipient: "pawel.grzesik@gmail.com"
-email_subject: "PROBLEM Service Alert: %s - %s"
-email_body: 'PROBLEM Service Alert: %s - %s'
-db_file: "/home/i/monit/history.db"
-time_range: "1234"
+db_file: "/etc/monit/history.db"
+time_range: "20"

@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = 'monit'
-  s.version     = '0.0.1'
+  s.version     = '0.0.3'
   s.executables << 'monit'
-  s.date        = '2015-03-30'
+  s.date        = '2015-04-17'
   s.summary     = "Monit!"
   s.description = "A simple monitoring system"
   s.authors     = ["Pawel Grzesik"]

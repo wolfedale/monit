@@ -1,2 +1,0 @@
-# monit
-Monitoring in Ruby

@@ -1,3 +1,0 @@
-http://stackoverflow.com/questions/614309/ideal-ruby-project-structure
-https://github.com/ripienaar/gwtf
-http://www.golang-book.com
