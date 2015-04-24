@@ -62,5 +62,7 @@ module Monit
       end
     end
 
+    private_class_method :histfile, :dbupdate, :create_history_file, :db
+
   end
 end

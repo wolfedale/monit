@@ -26,5 +26,7 @@ module Monit
         createf
       end
     end
+
+    private_class_method :locker, :templock, :createf
   end
 end

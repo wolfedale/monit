@@ -32,5 +32,6 @@ module Monit
     def self.time_range
       @time_range = conf["time_range"]
     end
+
   end
 end

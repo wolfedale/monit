@@ -24,5 +24,7 @@ module Monit
       # Delete lock
       Monit::Locker.deletef
     end
+
+  private_class_method :ping
   end
 end
